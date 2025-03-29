@@ -27,14 +27,15 @@ body {
     color: #bbb;
 }
 .login-btn {
-    display: inline-block;
     background-color: #fff;
     color: #111;
-    padding: 10px 20px;
-    margin-bottom: 20px;
+    padding: 12px 20px;
     border-radius: 5px;
     text-decoration: none;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .navbar {
     display: flex;
