@@ -1,3 +1,7 @@
+<?php
+include 'include/database.php';
+include 'include/session.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,8 +17,6 @@
     </div>
     <div class="container">
         <?php
-        require __DIR__ . '/include/database.php';
-        
         $xml = simplexml_load_file('books.xml');
         foreach ($xml->book as $book) {
             echo "<div class='book'>";

@@ -1,5 +1,7 @@
 {
     "require": {
-        
+        "doctrine/orm": "^3.3",
+        "doctrine/dbal": "^4",
+        "symfony/cache": "^7"
     }
 }
