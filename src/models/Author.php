@@ -14,6 +14,10 @@ class Author {
 
     #[ORM\Column(type: "string")]
     private string $name;
+
+    public function __construct(string $name) {
+        $this->name = $name;
+    }
 }
 
 ?>
