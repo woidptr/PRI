@@ -2,10 +2,10 @@ version: '3.8'
 
 services:
   server:
-    build: ./server
+    build: .
     container_name: server
     volumes:
-      - ./www:/var/www/html
+      - ./public:/var/www/html
     ports:
       - 8080:80
     env_file:
