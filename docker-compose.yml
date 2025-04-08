@@ -6,6 +6,7 @@ services:
     container_name: server
     volumes:
       - ./public:/var/www/html
+      - ./src:/var/www/html/src
     ports:
       - 8080:80
     env_file:
@@ -20,5 +21,10 @@ services:
       POSTGRES_USER: $DB_USER
       POSTGRES_PASSWORD: $DB_PASSWORD
       POSTGRES_DB: pri
+    volumes:
+      - pgdata:/var/lib/postgresql/data
     ports:
       - 5432:5432
+
+volumes:
+  pgdata:

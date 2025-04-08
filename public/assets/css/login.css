@@ -26,7 +26,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], input[type="email"] {
     width: calc(100% - 20px);
     padding: 10px;
     margin: 10px 0;
@@ -48,4 +48,19 @@ input[type="text"], input[type="password"] {
     cursor: pointer;
     text-align: center;
     display: block;
+}
+.signup-link {
+    margin-top: 15px;
+    color: #bbb;
+    font-size: 0.95em;
+}
+.signup-link a {
+    color: #fff;
+    text-decoration: underline;
+}
+.signup-link a:visited {
+    color: #fff;
+}
+.signup-link a:hover {
+    color: #0af;
 }

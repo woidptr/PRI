@@ -9,7 +9,8 @@ RUN apt-get update && apt-get install -y \
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-RUN docker-php-ext-install pdo pdo_mysql mysqli
+# RUN docker-php-ext-install pdo pdo_mysql mysqli
+RUN apt install -y libpq-dev && docker-php-ext-install pdo_pgsql
 
 WORKDIR /var/www
 
@@ -19,3 +20,4 @@ COPY composer.json ./
 #    docker-php-ext-enable mongodb
 
 RUN composer install
+RUN composer dump-autoload
