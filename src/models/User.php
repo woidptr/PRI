@@ -30,7 +30,7 @@ class User {
         $this->password_hash = $password_hash;
     }
 
-    public function getId(): ?int {
+    public function getId(): string {
         return $this->id;
     }
 

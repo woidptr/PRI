@@ -5,7 +5,6 @@ include '../utils/session.php';
 include '../utils/database.php';
 include '../models/user.php';
 
-
 use App\Utils\SessionManager;
 use App\Utils\Database;
 use App\Models\User;
@@ -14,7 +13,10 @@ header("Content-Type: application/json");
 
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
     if (SessionManager::exists("username")) {
-        echo json_encode(["loggedIn" => true, "username" => SessionManager::get("username")]);
+        echo json_encode([
+            "success" => true,
+            "username" => SessionManager::get("username")
+    ]);
     } else {
         echo json_encode(["loggedIn" => false]);
     }
@@ -23,19 +25,25 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     // $username = $data["username"] ?? "";
 
     $username = htmlspecialchars(trim($_POST["username"]));
+    $password = $_POST["password"];
 
     $documentManager = Database::getDocumentManager();
 
     $user = $documentManager->getRepository(User::class)->findOneBy(["username" => $username]);
 
-    if ($user) {
+    if ($user && password_verify($password, $user->getPasswordHash())) {
         SessionManager::start();
         SessionManager::set("userid", $user->getId());
         SessionManager::set("username", $user->getUsername());
 
-        echo "Logged in successfully";
+        echo json_encode([
+            "success" => true,
+            "redirect" => "/index.html"
+        ]);
     } else {
-        echo "User not found";
+        echo json_encode([
+            "success" => false
+        ]);
     }
 }
 

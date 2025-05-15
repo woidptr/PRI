@@ -64,3 +64,20 @@ input[type="text"], input[type="password"], input[type="email"] {
 .signup-link a:hover {
     color: #0af;
 }
+.error-message {
+    background-color: #ff4d4d;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 0.95em;
+    text-align: left;
+    box-shadow: 0 0 5px rgba(255, 77, 77, 0.5);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Optional animation for smooth appearance */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}

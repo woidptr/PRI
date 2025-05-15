@@ -10,14 +10,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $documentManager = Database::getDocumentManager();
 
     $username = $_POST["username"];
+    $email = $_POST["email"];
     $password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
-    $newUser = new User($username, $password_hash);
+    $user = $documentManager->getRepository(User::class)->findOneBy(["username" => $username]);
 
-    $documentManager->persist($newUser);
-    $documentManager->flush();
+    if ($user) {
+        echo "User found";
+    } else {
+        $newUser = new User($username, $email, $password_hash);
 
-    echo "Signed up successfully";
+        $documentManager->persist($newUser);
+        $documentManager->flush();
+    }
 }
 
 ?>
