@@ -16,9 +16,11 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
         echo json_encode([
             "success" => true,
             "username" => SessionManager::get("username")
-    ]);
+        ]);
     } else {
-        echo json_encode(["loggedIn" => false]);
+        echo json_encode([
+            "success" => false
+        ]);
     }
 } else if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // $data = json_encode(file_get_contents("php://input"), true);

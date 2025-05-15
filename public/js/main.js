@@ -1,8 +1,8 @@
 window.onload = function() {
-    fetch("http://localhost:8080/src/api/login.php")
+    fetch("/src/api/login.php")
         .then(response => response.json())
         .then(data => {
-            if (data.loggedIn) {
+            if (data.success) {
                 document.getElementById("loginButton").style.display = "none";
                 var userSection = document.getElementById("userSection");
                 userSection.innerHTML = `

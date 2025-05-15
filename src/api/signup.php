@@ -16,12 +16,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $user = $documentManager->getRepository(User::class)->findOneBy(["username" => $username]);
 
     if ($user) {
-        echo "User found";
+        echo json_encode([
+            "success" => false
+        ]);
     } else {
         $newUser = new User($username, $email, $password_hash);
 
         $documentManager->persist($newUser);
         $documentManager->flush();
+
+        echo json_encode([
+            "success" => true,
+            "redirect" => "/index.html"
+        ]);
     }
 }
 

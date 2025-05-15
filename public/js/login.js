@@ -19,5 +19,4 @@ document.getElementById("login-form").addEventListener("submit", function (e) {
                 errorMessage.style.display = "block";
             }
         })
-        
 })
