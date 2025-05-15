@@ -1,6 +1,8 @@
-# Forgive me for this please
+# Article website or something like that ig
 
-Normally I don't use a language that belongs in a trash can such as php, but unfortunately I was forced to do such bad thing by my beloved university.
+This is an article website created for a subject called "Programming for internet" in the university. The requirements were to create a website using vanilla php, html and javascript.
+
+Let me tell you one thing, I absolutely hated this. Memes below perfectly represent my mental state after this.
 
 # Enjoy some php memes
 
