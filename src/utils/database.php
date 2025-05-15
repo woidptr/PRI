@@ -4,32 +4,30 @@ namespace App\Utils;
 
 include '../../../vendor/autoload.php';
 
-use Doctrine\DBAL\DriverManager;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\ORMSetup;
+use Doctrine\ODM\MongoDB\Configuration;
+use Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ODM\MongoDB\Mapping\Driver\AttributeDriver;
+use MongoDB\Client;
 
 class Database {
-    private static ?EntityManager $entityManager = null;
+    private static ?DocumentManager $documentManager = null;
 
-    public static function getEntityManager(): EntityManager {
-        if (self::$entityManager === null) {
-            $config = ORMSetup::createAttributeMetadataConfiguration(
-                paths: [__DIR__ . '/src'],
-                isDevMode: true,
-            );
-            
-            $connection = DriverManager::getConnection([
-                'dbname' => 'pri',
-                'user' => getenv("DB_USER"),
-                'password' => getenv("DB_PASSWORD"),
-                'host' => 'database',
-                'driver' => 'pdo_pgsql',
-            ], $config);
-            
-            self::$entityManager = new EntityManager($connection, $config);
+    public static function getDocumentManager(): DocumentManager {
+        if (self::$documentManager === null) {
+            $config = new Configuration();
+            $config->setProxyDir(__DIR__ . "/proxies");
+            $config->setProxyNamespace("Proxies");
+            $config->setHydratorDir(__DIR__ . "/hydrators");
+            $config->setHydratorNamespace("Hydrators");
+            $config->setDefaultDB("pri");
+            $config->setMetadataDriverImpl(AttributeDriver::create(__DIR__ . "/Documents"));
+
+            $client = new Client("mongodb://woid:helloworld@mongodb:27017");
+
+            self::$documentManager = DocumentManager::create($client, $config);
         }
 
-        return self::$entityManager;
+        return self::$documentManager;
     }
 }
 

@@ -2,28 +2,31 @@
 
 namespace App\Models;
 
-use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
+// include 'article.php';
 
-#[ORM\Entity]
-#[ORM\Table(name: "users")]
+include "../../../vendor/autoload.php";
+
+use Doctrine\ODM\MongoDB\Mapping\Annotations\Document;
+use Doctrine\ODM\MongoDB\Mapping\Annotations\Id;
+use Doctrine\ODM\MongoDB\Mapping\Annotations\Field;
+
+#[Document(db: "pri", collection: "users")]
 class User {
-    #[ORM\Id]
-    #[ORM\Column(type: "integer")]
-    #[ORM\GeneratedValue]
-    private int|null $id = null;
+    #[Id]
+    private string $id;
 
-    #[ORM\Column(type: "string")]
+    #[Field(type: "string")]
     private string $username;
 
-    #[ORM\Column(type: "string")]
+    #[Field(type: "string")]
+    private string $email;
+
+    #[Field(type: "string")]
     private string $password_hash;
 
-    #[ORM\OneToMany(mapped_by: "author", targetEntity: Article::class)]
-    private Collection $articles;
-
-    public function __construct(string $username, string $password_hash) {
+    public function __construct(string $username, string $email, string $password_hash) {
         $this->username = $username;
+        $this->email = $email;
         $this->password_hash = $password_hash;
     }
 
@@ -33,6 +36,14 @@ class User {
 
     public function getUsername(): string {
         return $this->username;
+    }
+
+    public function getEmail(): string {
+        return $this->email;
+    }
+
+    public function getPasswordHash(): string {
+        return $this->password_hash;
     }
 }
 

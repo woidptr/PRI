@@ -2,25 +2,22 @@
 
 namespace App\Models;
 
-use Doctrine\ORM\Mapping as ORM;
+include "../../../vendor/autoload.php";
 
-#[ORM\Entity]
-#[ORM\Table(name: "articles")]
+use Doctrine\ODM\MongoDB\Mapping\Annotations\Document;
+use Doctrine\ODM\MongoDB\Mapping\Annotations\Id;
+use Doctrine\ODM\MongoDB\Mapping\Annotations\Field;
+
+#[Document(db: "pri", collection: "articles")]
 class Article {
-    #[ORM\Id]
-    #[ORM\Column(type: "integer")]
-    #[ORM\GeneratedValue]
-    private int|null $id = null;
+    #[Id]
+    private string $id;
 
-    #[ORM\Column(type: "string")]
+    #[Field(type: "string")]
     private string $title;
 
-    #[ORM\Column(type: "string")]
+    #[Field(type: "string")]
     private string $content;
-
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: "articles")]
-    #[ORM\JoinColumn(name: "user_id", referencedColumnName: "id", nullable: false)]
-    private User $author;
 
     public function __construct(string $title, string $content) {
         $this->title = $title;

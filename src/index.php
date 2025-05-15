@@ -9,6 +9,6 @@ if (!isset($_SERVER["HTTP_X_FRONTEND_REQUEST"]) || $_SERVER["HTTP_X_FRONTEND_REQ
     exit;
 }
 
-$entityManager = Database::getEntityManager();
+$documentManager = Database::getDocumentManager();
 
 ?>

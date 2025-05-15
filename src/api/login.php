@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     if (SessionManager::exists("username")) {
         echo json_encode(["loggedIn" => true, "username" => SessionManager::get("username")]);
     } else {
-        echo json_encode(["loggedIn" => true]);
+        echo json_encode(["loggedIn" => false]);
     }
 } else if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // $data = json_encode(file_get_contents("php://input"), true);
@@ -24,9 +24,9 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
 
     $username = htmlspecialchars(trim($_POST["username"]));
 
-    $entityManager = Database::getEntityManager();
+    $documentManager = Database::getDocumentManager();
 
-    $user = $entityManager->getRepository(User::class)->findOneBy(["username" => $username]);
+    $user = $documentManager->getRepository(User::class)->findOneBy(["username" => $username]);
 
     if ($user) {
         SessionManager::start();
