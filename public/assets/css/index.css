@@ -7,13 +7,14 @@ body {
     text-align: center;
 }
 .container {
-    max-width: 800px;
-    margin: 0 auto;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 .book {
     background-color: #222;
     padding: 15px;
-    margin: 10px 0;
+    margin: 20px auto;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
@@ -63,4 +64,30 @@ body {
     width: 32px;
     height: 32px;
     border-radius: 50%;
+}
+.article {
+    background-color: #222;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.article:hover {
+    background-color: #333;
+    transform: translateY(-3px);
+}
+.article a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+.article h2 {
+    margin: 0;
+    font-size: 1.5em;
+}
+.article p {
+    margin: 5px 0;
+    font-size: 1em;
+    color: #bbb;
 }
