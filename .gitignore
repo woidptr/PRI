@@ -1,3 +1,4 @@
 .env
 hydrators/
 proxies/
+.DS_Store
