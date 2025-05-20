@@ -1,19 +1,34 @@
 version: '3.8'
 
 services:
-  server:
-    build: .
-    container_name: server
+  frontend:
+    build:
+      context: ./public
+    container_name: frontend
     volumes:
-      - ./public:/var/www/html
-      - ./src:/var/www/html/src
+      - ./public:/usr/share/nginx/html:ro
     ports:
-      - 8080:80
+      - "8080:80"
+    depends_on:
+      - backend
+    networks:
+      - appnet
+
+  backend:
+    build:
+      context: ./src
+    container_name: backend
+    volumes:
+      - ./src:/var/www/html/
+    ports:
+      - "80:80"
     env_file:
       - .env
     depends_on:
       - mongodb
       - mongo-express
+    networks:
+      - appnet
   
   mongodb:
     image: mongo:latest
@@ -35,6 +50,10 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: helloworld
       ME_CONFIG_MONGODB_URL: mongodb://woid:helloworld@mongodb:27017/
       ME_CONFIG_BASICAUTH: false
+
+networks:
+  appnet:
+    driver: bridge
 
 volumes:
   mongo_data:

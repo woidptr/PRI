@@ -2,7 +2,7 @@
 
 namespace App\Utils;
 
-include '../../../vendor/autoload.php';
+include '../../vendor/autoload.php';
 
 use Doctrine\ODM\MongoDB\Configuration;
 use Doctrine\ODM\MongoDB\DocumentManager;

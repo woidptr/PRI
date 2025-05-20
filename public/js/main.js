@@ -1,16 +1,16 @@
 window.onload = function() {
-    fetch("/src/api/login.php")
+    fetch("/backend/api/login.php")
         .then(response => response.json())
         .then(data => {
             if (data.success) {
                 document.getElementById("loginButton").style.display = "none";
                 var userSection = document.getElementById("userSection");
-                userSection.innerHTML = `
-                    <div class="user-info">
-                        <img src="https://cdn0.iconfinder.com/data/icons/communication-456/24/account_profile_user_contact_person_avatar_placeholder-512.png" alt="Avatar">
-                        <span>Test User</span>
-                    </div>
-                `;
+                // userSection.innerHTML = `
+                //     <div class="user-info">
+                //         <img src="https://cdn0.iconfinder.com/data/icons/communication-456/24/account_profile_user_contact_person_avatar_placeholder-512.png" alt="Avatar">
+                //         <span>${data.username}</span>
+                //     </div>
+                // `;
             } else {
                 document.getElementById("loginButton").style.display = "flex";
             }

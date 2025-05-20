@@ -1,6 +1,6 @@
 <?php
 
-include '../../../vendor/autoload.php';
+include '../../vendor/autoload.php';
 include '../utils/session.php';
 include '../utils/database.php';
 include '../models/user.php';
@@ -17,10 +17,14 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
             "success" => true,
             "username" => SessionManager::get("username")
         ]);
+
+        exit;
     } else {
         echo json_encode([
             "success" => false
         ]);
+
+        exit;
     }
 } else if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // $data = json_encode(file_get_contents("php://input"), true);
@@ -35,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
 
     if ($user && password_verify($password, $user->getPasswordHash())) {
         SessionManager::start();
-        SessionManager::set("userid", $user->getId());
+        SessionManager::set("user_id", $user->getId());
         SessionManager::set("username", $user->getUsername());
 
         echo json_encode([

@@ -91,3 +91,61 @@ body {
     font-size: 1em;
     color: #bbb;
 }
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Button that toggles dropdown */
+.user-button {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+/* Avatar image */
+.user-button img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+/* Small ▼ icon */
+.dropdown-icon {
+    font-size: 0.8em;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #222;
+    box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 1001;
+}
+
+/* Show on hover */
+.user-dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Dropdown links */
+.dropdown-menu a {
+    display: block;
+    padding: 10px 15px;
+    color: white;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.dropdown-menu a:hover {
+    background-color: #333;
+}

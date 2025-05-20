@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign up</title>
     <link rel="stylesheet" href="assets/css/login.css"> <!-- Reuse the login CSS -->
+    <script defer src="js/signup.js"></script>
 </head>
 <body>
     <div class="container">
         <h2>Create Account</h2>
-        <form action="../src/api/signup.php" method="POST">
+        <form id="signup-form" action="../src/api/signup.php" method="POST">
             <div id="error-message" class="error-message" style="display: none;"></div>
             <input type="text" name="username" placeholder="Username" required>
             <input type="email" name="email" placeholder="Email" required>

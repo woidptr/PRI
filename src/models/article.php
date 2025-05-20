@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-include "../../../vendor/autoload.php";
+include "../../vendor/autoload.php";
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations\Document;
 use Doctrine\ODM\MongoDB\Mapping\Annotations\Id;
@@ -17,10 +17,14 @@ class Article {
     private string $title;
 
     #[Field(type: "string")]
+    private string $description;
+
+    #[Field(type: "string")]
     private string $content;
 
-    public function __construct(string $title, string $content) {
+    public function __construct(string $title, string $description, string $content) {
         $this->title = $title;
+        $this->description = $description;
         $this->content = $content;
     }
 
@@ -30,6 +34,10 @@ class Article {
 
     public function getTitle(): string {
         return $this->title;
+    }
+
+    public function getDescription(): string {
+        return $this->description;
     }
 
     public function getContent(): string {

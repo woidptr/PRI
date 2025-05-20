@@ -1,4 +1,4 @@
-document.getElementById("login-form").addEventListener("submit", function (e) {
+document.getElementById("signup-form").addEventListener("submit", function (e) {
     e.preventDefault();
 
     const errorMessage = document.getElementById("error-message");
@@ -6,7 +6,7 @@ document.getElementById("login-form").addEventListener("submit", function (e) {
     const form = e.target;
     const formData = new FormData(form);
 
-    fetch('/backend/api/login.php', {
+    fetch('/backend/api/signup.php', {
         method: 'POST',
         body: formData
     })
@@ -15,7 +15,7 @@ document.getElementById("login-form").addEventListener("submit", function (e) {
             if (data.success) {
                 window.location.href = data.redirect;
             } else {
-                errorMessage.textContent = "Username or password is incorrect!";
+                errorMessage.textContent = data.message;
                 errorMessage.style.display = "block";
             }
         })
