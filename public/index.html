@@ -11,16 +11,16 @@
     <div class="navbar">
         <h1>Articles</h1>
         <div id="userSection">
-            <button class="user-button">
-                <img src="https://cdn0.iconfinder.com/data/icons/communication-456/24/account_profile_user_contact_person_avatar_placeholder-512.png" alt="Avatar">
-                <span>TestUser</span>
-                <span class="dropdown-icon">▼</span>
-            </button>
-            <div class="dropdown-menu">
-                <a href="profile.php">👤 Profile</a>
-                <a href="logout.php">🚪 Logout</a>
+            <div class="user-dropdown" id="userDropdown">
+                <button class="user-button" id="userButton" aria-expanded="false">
+                    <span class="username" id="username">TestUser</span>
+                    <span class="dropdown-icon" id="dropdownIcon">▼</span>
+                </button>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <a href="profile.php">👤 Profile</a>
+                    <a href="logout" id="logoutBtn">🚪 Logout</a>
+                </div>
             </div>
-            <!-- This will be filled by JS -->
             <a href="login.html" id="loginButton" class="login-btn">Login</a>
         </div>
     </div>

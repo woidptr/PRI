@@ -96,56 +96,105 @@ body {
     display: inline-block;
 }
 
-/* Button that toggles dropdown */
+#userSection {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* User dropdown styles */
+.user-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* User button styling */
 .user-button {
-    background: none;
+    background: #1a1a1a;
     border: none;
-    color: white;
+    color: #fff;
     font-weight: bold;
+    padding: 10px 18px;
+    border-radius: 6px;
     display: flex;
     align-items: center;
     gap: 10px;
     cursor: pointer;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.15);
+    transition: background 0.2s, box-shadow 0.2s;
+    outline: none;
+}
+.user-button:hover, .user-button:focus, .user-dropdown.active .user-button {
+    background: #333;
+    box-shadow: 0 2px 12px rgba(255,255,255,0.08);
 }
 
-/* Avatar image */
-.user-button img {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
+.username {
+    font-size: 1.1em;
+    letter-spacing: 0.5px;
 }
 
-/* Small ▼ icon */
 .dropdown-icon {
-    font-size: 0.8em;
+    font-size: 1em;
+    transition: transform 0.2s;
+    margin-left: 2px;
 }
 
-/* Dropdown menu */
+.user-dropdown.active .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+/* Dropdown menu styles */
 .dropdown-menu {
     display: none;
     position: absolute;
     right: 0;
-    background-color: #222;
-    box-shadow: 0 0 10px rgba(255,255,255,0.1);
-    border-radius: 5px;
+    top: 110%;
+    min-width: 150px;
+    background: #222;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.32);
+    border-radius: 6px;
     overflow: hidden;
     z-index: 1001;
+    animation: fadeIn 0.25s;
 }
-
-/* Show on hover */
-.user-dropdown:hover .dropdown-menu {
+.user-dropdown.active .dropdown-menu {
     display: block;
 }
 
-/* Dropdown links */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-8px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
 .dropdown-menu a {
     display: block;
-    padding: 10px 15px;
-    color: white;
+    padding: 12px 20px;
+    color: #fff;
     text-decoration: none;
-    white-space: nowrap;
+    font-size: 1em;
+    transition: background 0.18s;
+}
+.dropdown-menu a:hover {
+    background: #333;
 }
 
-.dropdown-menu a:hover {
-    background-color: #333;
+/* Login button spacing */
+.login-btn {
+    margin-left: 10px;
+}
+
+/* Responsive improvements */
+@media (max-width: 600px) {
+    #userSection {
+        gap: 10px;
+    }
+    .user-button {
+        padding: 8px 12px;
+        font-size: 0.98em;
+    }
+    .dropdown-menu a {
+        padding: 10px 14px;
+    }
 }

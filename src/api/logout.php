@@ -1,8 +1,22 @@
 <?php
 
-use App\Utils\SessionManager;
+include '../utils/session.php';
+include '../utils/methods.php';
 
-SessionManager::destroy();
-echo json_encode(["message" => "Logged out successfully"]);
+use App\Utils\SessionManager;
+use App\Utils\HttpMethods;
+
+$method = HttpMethods::fromRequest();
+
+if ($method === HttpMethods::POST) {
+    SessionManager::destroy();
+
+    echo json_encode([
+        "success" => true,
+        "redirect" => "/"
+    ]);
+
+    exit;
+}
 
 ?>

@@ -4,25 +4,50 @@ window.onload = function() {
         .then(data => {
             if (data.success) {
                 document.getElementById("loginButton").style.display = "none";
-                var userSection = document.getElementById("userSection");
-                // userSection.innerHTML = `
-                //     <div class="user-info">
-                //         <img src="https://cdn0.iconfinder.com/data/icons/communication-456/24/account_profile_user_contact_person_avatar_placeholder-512.png" alt="Avatar">
-                //         <span>${data.username}</span>
-                //     </div>
-                // `;
+                document.getElementById("username").textContent = data.username;
+                document.getElementById("userButton").style.display = "flex";
             } else {
+                document.getElementById("userButton").style.display = "none";
                 document.getElementById("loginButton").style.display = "flex";
             }
         })
 }
 
+document.getElementById("logoutBtn").addEventListener("click", function(event) {
+    event.preventDefault();
 
-// function fetchUser() {
-//     fetch("/src/user.php")
-//         .then(response => response.json())
-//         .then(data => {
-//             document.getElementById("navigation").innerHTML = `<h1>Library Showcase</h1>`;
-//         })
-//         .catch(error => console.error("Error: ", error))
-// }
+    fetch("/backend/api/logout.php", {
+        "method": "POST"
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = data.redirect;
+        }
+    })
+})
+
+document.addEventListener('DOMContentLoaded', function() {
+    const userDropdown = document.getElementById('userDropdown');
+    const userButton = document.getElementById('userButton');
+    
+    if (userButton && userDropdown) {
+        userButton.addEventListener('click', function(event) {
+            event.stopPropagation();
+            userDropdown.classList.toggle('active');
+            // Update aria-expanded for accessibility
+            userButton.setAttribute(
+                'aria-expanded',
+                userDropdown.classList.contains('active') ? 'true' : 'false'
+            );
+        });
+        
+        // Close the dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!userDropdown.contains(event.target)) {
+                userDropdown.classList.remove('active');
+                userButton.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
+});

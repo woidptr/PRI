@@ -3,15 +3,19 @@
 include '../../vendor/autoload.php';
 include '../utils/session.php';
 include '../utils/database.php';
+include '../utils/methods.php';
 include '../models/user.php';
 
 use App\Utils\SessionManager;
+use App\Utils\HttpMethods;
 use App\Utils\Database;
 use App\Models\User;
 
 header("Content-Type: application/json");
 
-if ($_SERVER["REQUEST_METHOD"] === "GET") {
+$method = HttpMethods::fromRequest();
+
+if ($method === HttpMethods::GET) {
     if (SessionManager::exists("username")) {
         echo json_encode([
             "success" => true,
@@ -26,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
 
         exit;
     }
-} else if ($_SERVER["REQUEST_METHOD"] === "POST") {
+} else if ($method === HttpMethods::POST) {
     // $data = json_encode(file_get_contents("php://input"), true);
     // $username = $data["username"] ?? "";
 
@@ -46,6 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
             "success" => true,
             "redirect" => "/index.html"
         ]);
+
+        exit;
     } else {
         echo json_encode([
             "success" => false

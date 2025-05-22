@@ -1,8 +1,15 @@
 # Article website or something like that ig
 
-This is an article website created for a subject called "Programming for internet" in the university. The requirements were to create a website using vanilla php, html and javascript.
+This is an article website created for a subject in university to pass the exam. The requirements were to create a website using vanilla php, html and javascript.
 
 PHP = brain rot
+
+## Getting Started
+
+### Prerequisites
+
+- [Docker](https://www.docker.com/products/docker-desktop)
+- [Docker Compose](https://docs.docker.com/compose/install/)
 
 # Enjoy some php memes
 

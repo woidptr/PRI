@@ -3,10 +3,14 @@
 namespace App\Models;
 
 include "../../vendor/autoload.php";
+# include "../models/user.php";
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations\Document;
 use Doctrine\ODM\MongoDB\Mapping\Annotations\Id;
 use Doctrine\ODM\MongoDB\Mapping\Annotations\Field;
+use Doctrine\ODM\MongoDB\Mapping\Annotations\ReferenceOne;
+
+use App\Models\User;
 
 #[Document(db: "pri", collection: "articles")]
 class Article {
@@ -22,10 +26,14 @@ class Article {
     #[Field(type: "string")]
     private string $content;
 
-    public function __construct(string $title, string $description, string $content) {
+    #[ReferenceOne(inversedBy: "articles")]
+    private User $author;
+
+    public function __construct(string $title, string $description, string $content, string $author) {
         $this->title = $title;
         $this->description = $description;
         $this->content = $content;
+        $this->author = $author;
     }
 
     public function getId(): string {
@@ -42,6 +50,10 @@ class Article {
 
     public function getContent(): string {
         return $this->content;
+    }
+
+    public function getAuthor(): User {
+        return $this->author;
     }
 }
 
