@@ -1,6 +1,6 @@
 <?php
 
-include '../../vendor/autoload.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
 include '../utils/session.php';
 include '../utils/database.php';
 include '../utils/methods.php';
@@ -31,9 +31,6 @@ if ($method === HttpMethods::GET) {
         exit;
     }
 } else if ($method === HttpMethods::POST) {
-    // $data = json_encode(file_get_contents("php://input"), true);
-    // $username = $data["username"] ?? "";
-
     $username = htmlspecialchars(trim($_POST["username"]));
     $password = $_POST["password"];
 
@@ -43,7 +40,7 @@ if ($method === HttpMethods::GET) {
 
     if ($user && password_verify($password, $user->getPasswordHash())) {
         SessionManager::start();
-        SessionManager::set("user_id", $user->getId());
+        SessionManager::set("userId", $user->getId());
         SessionManager::set("username", $user->getUsername());
 
         echo json_encode([

@@ -3,7 +3,7 @@
 namespace App\Models;
 
 include "../../vendor/autoload.php";
-# include "../models/user.php";
+include_once "../models/user.php";
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations\Document;
 use Doctrine\ODM\MongoDB\Mapping\Annotations\Id;
@@ -26,7 +26,7 @@ class Article {
     #[Field(type: "string")]
     private string $content;
 
-    #[ReferenceOne(inversedBy: "articles")]
+    #[ReferenceOne(targetDocument: User::class, inversedBy: "articles")]
     private User $author;
 
     public function __construct(string $title, string $description, string $content, string $author) {

@@ -1,5 +1,6 @@
 <?php
 
+include '../../vendor/autoload.php';
 include '../utils/database.php';
 include '../utils/session.php';
 include '../models/user.php';
@@ -42,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $documentManager->flush();
 
         SessionManager::start();
-        SessionManager::set("user_id", $newUser->getId());
+        SessionManager::set("userId", $newUser->getId());
         SessionManager::set("username", $newUser->getUsername());
 
         echo json_encode([

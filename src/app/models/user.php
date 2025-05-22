@@ -5,7 +5,7 @@ namespace App\Models;
 // include 'article.php';
 
 include "../../vendor/autoload.php";
-include "../models/article.php";
+include_once "../models/article.php";
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations\Document;
 use Doctrine\ODM\MongoDB\Mapping\Annotations\Id;
@@ -54,6 +54,14 @@ class User {
 
     public function getPasswordHash(): string {
         return $this->password_hash;
+    }
+
+    public function getArticles(): Collection {
+        return $this->articles;
+    }
+
+    public function addArticle(Article $article): void {
+        $this->articles[] = $article;
     }
 }
 

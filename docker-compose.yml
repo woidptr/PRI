@@ -6,7 +6,7 @@ services:
       context: ./public
     container_name: frontend
     volumes:
-      - ./public:/usr/share/nginx/html:ro
+      - ./public/www:/usr/share/nginx/html:ro
     ports:
       - "8080:80"
     depends_on:
@@ -19,7 +19,7 @@ services:
       context: ./src
     container_name: backend
     volumes:
-      - ./src:/var/www/html/
+      - ./src/app:/var/www/html/
     ports:
       - "80:80"
     env_file:

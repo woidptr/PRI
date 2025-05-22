@@ -1,5 +1,6 @@
 <?php
 
+include '../../vendor/autoload.php';
 include '../utils/session.php';
 include '../utils/methods.php';
 
