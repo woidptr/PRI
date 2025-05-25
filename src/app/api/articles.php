@@ -25,6 +25,23 @@ if ($method === HttpMethods::GET) {
     ->sample(5)
     ->execute()
     ->toArray();
+
+    $data = [];
+
+    foreach($results as $article) {
+        $data[] = [
+            "title" => $article["title"],
+            "content" => $article["content"]
+        ];
+    }
+
+    http_response_code(HttpStatusCode::OK);
+
+    echo json_encode([
+        "articles" => $data
+    ], JSON_PRETTY_PRINT);
+
+    exit;
 } else {
     http_response_code(HttpStatusCode::METHOD_NOT_ALLOWED);
 
