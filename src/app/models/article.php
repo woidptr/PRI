@@ -29,7 +29,7 @@ class Article {
     #[ReferenceOne(targetDocument: User::class, inversedBy: "articles")]
     private User $author;
 
-    public function __construct(string $title, string $description, string $content, string $author) {
+    public function __construct(string $title, string $description, string $content, User $author) {
         $this->title = $title;
         $this->description = $description;
         $this->content = $content;

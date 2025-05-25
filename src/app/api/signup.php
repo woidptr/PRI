@@ -3,13 +3,21 @@
 include '../../vendor/autoload.php';
 include '../utils/database.php';
 include '../utils/session.php';
+include '../utils/methods.php';
+include '../utils/status.php';
 include '../models/user.php';
 
 use App\Utils\Database;
 use App\Utils\SessionManager;
+use App\Utils\HttpMethods;
+use App\Utils\HttpStatusCode;
 use App\Models\User;
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+header("Content-Type: application/json");
+
+$method = HttpMethods::fromRequest();
+
+if ($method === HttpMethods::POST) {
     $documentManager = Database::getDocumentManager();
 
     $username = $_POST["username"];
@@ -53,6 +61,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         exit;
     }
+} else {
+    http_response_code(HttpStatusCode::METHOD_NOT_ALLOWED);
+
+    echo json_encode([
+        "status_code" => HttpStatusCode::METHOD_NOT_ALLOWED,
+        "message" => "Method not allowed"
+    ]);
+
+    exit;
 }
 
 ?>

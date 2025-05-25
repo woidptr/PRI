@@ -6,7 +6,7 @@ document.getElementById("signup-form").addEventListener("submit", function (e) {
     const form = e.target;
     const formData = new FormData(form);
 
-    fetch('/backend/api/signup.php', {
+    fetch('/backend/api/signup', {
         method: 'POST',
         body: formData
     })

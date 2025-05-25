@@ -6,17 +6,21 @@ document.getElementById("login-form").addEventListener("submit", function (e) {
     const form = e.target;
     const formData = new FormData(form);
 
-    fetch('/backend/api/login.php', {
-        method: 'POST',
-        body: formData
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                window.location.href = data.redirect;
-            } else {
-                errorMessage.textContent = "Username or password is incorrect!";
-                errorMessage.style.display = "block";
-            }
-        })
+    login(formData, errorMessage);
 })
+
+async function login(formData, errorMessage) {
+    const response = await fetch("/backend/api/login", {
+        method: "POST",
+        body: formData
+    });
+
+    const data = await response.json();
+
+    if (response.status === 200) {
+        window.location.href = data.redirect;
+    } else if (response.status === 401) {
+        errorMessage.textContent = data.message;
+        errorMessage.style.display = "block";
+    }
+}
