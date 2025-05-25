@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Asynchronous JavaScript</title>
+    <link rel="stylesheet" href="../assets/css/index.css">
+    <script defer src="../js/main.js"></script>
+</head>
+<body>
+    <div class="navbar">
+        <h1>Articles</h1>
+        <div id="userSection">
+            <div class="user-dropdown" id="userDropdown">
+                <button class="user-button" id="userButton" aria-expanded="false">
+                    <span class="username" id="username">-- placeholder --</span>
+                    <span class="dropdown-icon" id="dropdownIcon">▼</span>
+                </button>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <a href="profile.php">👤 Profile</a>
+                    <a href="/">📝 Articles</a>
+                    <a href="/" id="logoutBtn">🚪 Logout</a>
+                </div>
+            </div>
+            <a href="login.html" id="loginButton" class="login-btn">Login</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <article class="article" style="box-shadow: 0 0 20px rgba(255,255,255,0.09); margin: 40px 0;">
+            <header>
+                <h2 id="articleTitle" style="font-size:2em; margin-bottom: 10px;">-- placeholder --</h2>
+                <div style="font-size: 1em; color: #bbb; margin-bottom: 20px;">By <span style="font-weight:bold;">Jane Doe</span> &bull; May 2025</div>
+            </header>
+            <section id="articleContent" style="text-align:left;">
+                -- placeholder --
+            </section>
+            <footer style="text-align:left; color:#888; font-size:0.95em; margin-top:40px;">
+                <a href="/" style="color:#bbb; text-decoration:underline;">&#8592; Back to Articles</a>
+            </footer>
+        </article>
+    </div>
+</body>
+</html>

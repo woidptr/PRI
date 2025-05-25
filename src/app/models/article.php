@@ -21,17 +21,13 @@ class Article {
     private string $title;
 
     #[Field(type: "string")]
-    private string $description;
-
-    #[Field(type: "string")]
     private string $content;
 
     #[ReferenceOne(targetDocument: User::class, inversedBy: "articles")]
     private User $author;
 
-    public function __construct(string $title, string $description, string $content, User $author) {
+    public function __construct(string $title, string $content, User $author) {
         $this->title = $title;
-        $this->description = $description;
         $this->content = $content;
         $this->author = $author;
     }
@@ -42,10 +38,6 @@ class Article {
 
     public function getTitle(): string {
         return $this->title;
-    }
-
-    public function getDescription(): string {
-        return $this->description;
     }
 
     public function getContent(): string {
