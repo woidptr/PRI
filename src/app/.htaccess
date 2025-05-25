@@ -1,0 +1,19 @@
+RewriteEngine On
+
+# Remove .php from URLs
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.+?)/?$ $1.php [L]
+
+# Redirect .php to clean URLs
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+(.+)\.php\sHTTP
+RewriteRule ^(.+)\.php$ /$1 [R=301,L]
+
+# If the requested file is .env or .htaccess, pretend it doesn't exist
+RewriteCond %{REQUEST_URI} (\.env|\.htaccess|\.git|\.log)$ [NC]
+RewriteRule ^ - [R=404,L]
+
+# Pretend /models does not exist
+RewriteCond %{REQUEST_URI} ^/(models|utils)(/|$) [NC]
+RewriteRule ^ - [R=404,L]
+
+ErrorDocument 404 /errors/404.php

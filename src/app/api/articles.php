@@ -35,7 +35,10 @@ if ($method === HttpMethods::GET) {
         ];
     }
 
-    echo json_encode(["articles" => $data], JSON_PRETTY_PRINT);
+    echo json_encode([
+        "success" => true,
+        "articles" => $data
+    ], JSON_PRETTY_PRINT);
 
     exit;
 }

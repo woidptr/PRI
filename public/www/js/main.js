@@ -11,6 +11,16 @@ window.onload = function() {
                 document.getElementById("loginButton").style.display = "flex";
             }
         })
+    
+    fetch("/backend/api/articles.php")
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                for (let article of data.articles) {
+                    console.log(article.id);
+                }
+            }
+        })
 }
 
 document.getElementById("logoutBtn").addEventListener("click", function(event) {
