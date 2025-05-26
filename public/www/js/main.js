@@ -33,16 +33,32 @@ document.getElementById("logoutBtn").addEventListener("click", function(event) {
     logout();
 })
 
-async function logout() {
-    const response = await fetch("/backend/api/logout", {
-        "method": "POST"
-    });
+async function logout(formData) {
+    const response = await fetch("/backend/api/logout");
 
     const data = await response.json();
 
     if (response.status === 200) {
         window.location.href = data.redirect;
     }
+}
+
+document.getElementById("articlesButton").addEventListener("click", function(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const formData = new FormData(form);
+
+    getSuggestedArticles(formData);
+})
+
+async function getSuggestedArticles(formData) {
+    const response = await fetch("/backend/api/user/articles", {
+        "method": "POST",
+        "body": formData
+    });
+
+    const data = await response.json();
 }
 
 document.addEventListener('DOMContentLoaded', function() {
