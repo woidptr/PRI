@@ -24,7 +24,7 @@ class Database {
             $config->setDefaultDB("pri");
             $config->setMetadataDriverImpl(AttributeDriver::create(__DIR__ . "/Documents"));
 
-            $url = sprintf("mongodb://%u:%p@mongodb:27017", Settings::$mongoUser, Settings::$mongoPassword);
+            $url = sprintf("mongodb://%s:%s@mongodb:27017", Settings::$mongoUser, Settings::$mongoPassword);
 
             $client = new Client($url);
 
