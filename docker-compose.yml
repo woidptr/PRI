@@ -20,6 +20,7 @@ services:
     container_name: backend
     volumes:
       - ./src/app:/var/www/html/
+      - .env:/var/www/.env
     ports:
       - "80:80"
     env_file:

@@ -3,11 +3,13 @@
 namespace App\Utils;
 
 include '../../vendor/autoload.php';
+include '../utils/settings.php';
 
 use Doctrine\ODM\MongoDB\Configuration;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\Mapping\Driver\AttributeDriver;
 use MongoDB\Client;
+use App\Utils\Settings;
 
 class Database {
     private static ?DocumentManager $documentManager = null;
@@ -22,7 +24,9 @@ class Database {
             $config->setDefaultDB("pri");
             $config->setMetadataDriverImpl(AttributeDriver::create(__DIR__ . "/Documents"));
 
-            $client = new Client("mongodb://woid:helloworld@mongodb:27017");
+            $url = sprintf("mongodb://%u:%p@mongodb:27017", Settings::$mongoUser, Settings::$mongoPassword);
+
+            $client = new Client($url);
 
             self::$documentManager = DocumentManager::create($client, $config);
         }
