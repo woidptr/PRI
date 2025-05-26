@@ -1,8 +1,6 @@
-# Article website or something like that ig
+# PHP = brain rot
 
-This is an article website created for a subject in university to pass the exam. The requirements were to create a website using vanilla php, html and javascript.
-
-PHP = brain rot
+An article website that uses vanilla php for the backend (this was a requirement), vanilla html/ccs/js in the frontend (also requirement) and mongodb as a database. Created for a subject in university to pass the exam.
 
 ## Getting Started
 
@@ -10,6 +8,16 @@ PHP = brain rot
 
 - [Docker](https://www.docker.com/products/docker-desktop)
 - [Docker Compose](https://docs.docker.com/compose/install/)
+
+### Creating .env file
+
+Create a `.env` file in the project root. Inside set the variables from `.env.example`.
+
+### Launching
+
+```sh
+docker-compose up --build
+```
 
 # Enjoy some php memes
 
