@@ -18,30 +18,52 @@ header("Content-Type: application/json");
 $method = HttpMethods::fromRequest();
 
 if ($method === HttpMethods::GET) {
+    $articleId = $_POST["articleId"] ?? "";
+
     $documentManager = Database::getDocumentManager();
-
-    $builder = $documentManager->createAggregationBuilder(Article::class);
-    $results = $builder
-    ->sample(5)
-    ->execute()
-    ->toArray();
-
-    $data = [];
-
-    foreach($results as $article) {
-        $data[] = [
-            "title" => $article["title"],
-            "content" => $article["content"]
-        ];
-    }
 
     http_response_code(HttpStatusCode::OK);
 
-    echo json_encode([
-        "articles" => $data
-    ], JSON_PRETTY_PRINT);
+    if ($articleId === "") {
+        $builder = $documentManager->createAggregationBuilder(Article::class)->hydrate(Article::class);
+        $results = $builder->sample(5)->execute()->toArray();
 
-    exit;
+        $data = [];
+
+        foreach($results as $article) {
+            $data[] = [
+                "id" => $article->getId(),
+                "title" => $article->getTitle(),
+                "content" => $article->getContent(),
+                "author" => [
+                    "id" => $article->getAuthor()->getId(),
+                    "username" => $article->getAuthor()->getUsername()
+                ],
+            ];
+        }
+
+        echo json_encode([
+            "articles" => $data
+        ], JSON_PRETTY_PRINT);
+
+        exit;
+    } else {
+        $article = $documentManager->getRepository(Article::class)->findOneBy(["id" => $articleId]);
+
+        echo json_encode([
+            "article" => [
+                "id" => $article->getId(),
+                "title" => $article->getTitle(),
+                "content" => $article->getContent(),
+                "author" => [
+                    "id" => $article->getAuthor()->getId(),
+                    "username" => $article->getAuthor()->getUsername()
+                ],
+            ],
+        ]);
+
+        exit;
+    }
 } else {
     http_response_code(HttpStatusCode::METHOD_NOT_ALLOWED);
 

@@ -1,15 +1,7 @@
 window.onload = function() {
     checkLogin();
-    
-    fetch("/backend/api/articles")
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                for (let article of data.articles) {
-                    console.log(article.id);
-                }
-            }
-        })
+
+    getSuggestedArticles();
 }
 
 async function checkLogin() {
@@ -27,6 +19,28 @@ async function checkLogin() {
     }
 }
 
+async function getSuggestedArticles(formData) {
+    const response = await fetch("/backend/api/articles");
+
+    const data = await response.json();
+
+    if (response.status === 200) {
+        let articlesHTML = ``;
+
+        for (const article of data.articles) {
+            articlesHTML += `
+                <div class="article">
+                    <a href="article" id="${article.id}">
+                        <h2>${article.title}</h2>
+                        <p>Explore callbacks, promises, and async/await in this beginner-friendly guide.</p>
+                    </a>
+                </div>`
+        }
+
+        document.getElementById("articlesContainer").innerHTML = articlesHTML;
+    }
+}
+
 document.getElementById("logoutBtn").addEventListener("click", function(event) {
     event.preventDefault();
 
@@ -34,7 +48,9 @@ document.getElementById("logoutBtn").addEventListener("click", function(event) {
 })
 
 async function logout(formData) {
-    const response = await fetch("/backend/api/logout");
+    const response = await fetch("/backend/api/logout", {
+        "method": "POST"
+    });
 
     const data = await response.json();
 
@@ -49,16 +65,32 @@ document.getElementById("articlesButton").addEventListener("click", function(eve
     const form = event.target;
     const formData = new FormData(form);
 
-    getSuggestedArticles(formData);
+    // getSuggestedArticles(formData);
 })
 
-async function getSuggestedArticles(formData) {
-    const response = await fetch("/backend/api/user/articles", {
-        "method": "POST",
+document.addEventListener("click", function(event) {
+    let article = event.target.closest("A");
+    if (article != null && article.getAttribute("href") === "article") {
+        event.preventDefault();
+
+
+    }
+})
+
+async function loadArticle(articleId) {
+    const formData = new FormData();
+    formData.append("article_id", articleId);
+
+    const response = fetch("/backend/api/articles", {
+        "method": "GET",
         "body": formData
     });
 
     const data = await response.json();
+
+    if (response.status === 200) {
+        
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
