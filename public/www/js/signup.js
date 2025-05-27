@@ -1,3 +1,5 @@
+import { signup } from "./utils/auth.js";
+
 document.getElementById("signup-form").addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -6,17 +8,5 @@ document.getElementById("signup-form").addEventListener("submit", function (e) {
     const form = e.target;
     const formData = new FormData(form);
 
-    fetch('/backend/api/signup', {
-        method: 'POST',
-        body: formData
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                window.location.href = data.redirect;
-            } else {
-                errorMessage.textContent = data.message;
-                errorMessage.style.display = "block";
-            }
-        })
+    signup(formData, errorMessage);
 })

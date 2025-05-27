@@ -1,3 +1,5 @@
+import { login } from "./utils/auth.js";
+
 document.getElementById("login-form").addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -8,19 +10,3 @@ document.getElementById("login-form").addEventListener("submit", function (e) {
 
     login(formData, errorMessage);
 })
-
-async function login(formData, errorMessage) {
-    const response = await fetch("/backend/api/login", {
-        method: "POST",
-        body: formData
-    });
-
-    const data = await response.json();
-
-    if (response.status === 200) {
-        window.location.href = data.redirect;
-    } else if (response.status === 401) {
-        errorMessage.textContent = data.message;
-        errorMessage.style.display = "block";
-    }
-}

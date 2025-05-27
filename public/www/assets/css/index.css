@@ -198,3 +198,36 @@ body {
         padding: 10px 14px;
     }
 }
+
+.article-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.article-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.edit-btn, .delete-btn {
+    background-color: #1a1a1a;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: bold;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+.edit-btn:hover {
+    background-color: #2e2e2e;
+}
+.delete-btn:hover {
+    background-color: #3a0000;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
+}

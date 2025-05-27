@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library Showcase</title>
     <link rel="stylesheet" href="assets/css/index.css">
-    <script defer src="js/main.js"></script>
+    <script type="module" src="js/main.js"></script>
 </head>
 <body>
     <div class="navbar">
@@ -26,6 +26,12 @@
     </div>
 
     <div class="container" id="articlesContainer">
+        <div class="article">
+            <a href="article" id="${article.id}">
+                <h2>${article.title}</h2>
+                <p>Explore callbacks, promises, and async/await in this beginner-friendly guide.</p>
+            </a>
+        </div>
     </div>
 </body>
 </html>

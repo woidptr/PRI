@@ -27,8 +27,10 @@ if ($method === HttpMethods::POST) {
     $check_email = $documentManager->getRepository(User::class)->findOneBy(["email" => $email]);
 
     if ($check_email) {
+        http_response_code(HttpStatusCode::CONFLICT);
+
         echo json_encode([
-            "success" => false,
+            "status_code" => HttpStatusCode::CONFLICT,
             "message" => "This email is already registered!"
         ]);
 
@@ -37,8 +39,10 @@ if ($method === HttpMethods::POST) {
         $check_username = $documentManager->getRepository(User::class)->findOneBy(["username" => $username]);
 
         if ($check_username) {
+            http_response_code(HttpStatusCode::CONFLICT);
+
             echo json_encode([
-                "success" => false,
+                "status_code" => HttpStatusCode::CONFLICT,
                 "message" => "Username already taken!"
             ]);
 
@@ -54,8 +58,9 @@ if ($method === HttpMethods::POST) {
         SessionManager::set("userId", $newUser->getId());
         SessionManager::set("username", $newUser->getUsername());
 
+        http_response_code(HttpStatusCode::OK);
+
         echo json_encode([
-            "success" => true,
             "redirect" => "/index.html"
         ]);
 

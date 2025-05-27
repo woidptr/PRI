@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<articles>
+    <article>
+        <title>Getting Started with Rust: Safe and Fast Systems Programming</title>
+        <content><![CDATA[
+# Rust: Safe and Fast Systems Programming
+
+Rust is a modern systems programming language that guarantees memory safety and thread safety. Its innovative ownership model helps prevent bugs at compile time.
+
+## Why Rust?
+
+- **Memory Safety** without garbage collection
+- **Zero-cost Abstractions**
+- **Fearless Concurrency**
+
+## Example: Hello, World!
+
+{3bracket}rust
+fn main() {
+    println!("Hello, world!");
+}
+{3bracket}
+
+## Ownership and Borrowing
+
+Rust enforces a unique ownership model:
+
+{3bracket}rust
+fn main() {
+    let s = String::from("hello");
+    takes_ownership(s);
+    // s is no longer valid here
+}
+
+fn takes_ownership(some_string: String) {
+    println!("{}", some_string);
+}
+{3bracket}
+
+> **Tip:** Use `&` to borrow instead of move.
+
+## Further Reading
+
+- [The Rust Book](https://doc.rust-lang.org/book/)
+- [Ownership and Borrowing](https://doc.rust-lang.org/book/ch04-00-understanding-ownership.html)
+]]></content>
+        <author>Alex Turner</author>
+        <date>2025-05-27</date>
+    </article>
+    <article>
+        <title>C++ Essentials: Power, Speed, and Control</title>
+        <content><![CDATA[
+# C++: Power, Speed, and Control
+
+C++ is a classic language for system, game, and performance-critical programming.
+
+## Hello, World!
+
+{3bracket}cpp
+#include <iostream>
+
+int main() {
+    std::cout << "Hello, World!" << std::endl;
+    return 0;
+}
+{3bracket}
+
+## Classes and Objects
+
+{3bracket}cpp
+class Animal {
+public:
+    void speak() {
+        std::cout << "Animal speaks" << std::endl;
+    }
+};
+
+int main() {
+    Animal a;
+    a.speak();
+}
+{3bracket}
+
+## Modern C++ Features
+
+- Smart pointers (`std::unique_ptr`, `std::shared_ptr`)
+- Lambda expressions
+- Range-based for loops
+
+> **Tip:** Always prefer smart pointers over raw pointers!
+
+## Resources
+
+- [cplusplus.com](https://cplusplus.com/)
+- [Modern C++ Features](https://en.cppreference.com/w/cpp/language)
+]]></content>
+        <author>Maria Ivanova</author>
+        <date>2025-05-27</date>
+    </article>
+    <article>
+        <title>Go (Golang): Simplicity and Concurrency Made Easy</title>
+        <content><![CDATA[
+# Go (Golang): Simplicity and Concurrency
+
+Go is a statically typed, compiled language developed at Google. It’s known for its simplicity and powerful concurrency primitives.
+
+## Hello, World!
+
+{3bracket}go
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello, World!")
+}
+{3bracket}
+
+## Goroutines and Channels
+
+{3bracket}go
+func say(s string) {
+    fmt.Println(s)
+}
+
+func main() {
+    go say("world")
+    say("hello")
+}
+{3bracket}
+
+## Formatting and Linting
+
+Use `gofmt` to format your code automatically:
+
+{3bracket}sh
+gofmt -w yourfile.go
+{3bracket}
+
+> **Tip:** Go prefers composition over inheritance.
+
+## Learn More
+
+- [Go Tour](https://tour.golang.org/)
+- [Effective Go](https://go.dev/doc/effective_go)
+]]></content>
+        <author>Samuel Lee</author>
+        <date>2025-05-27</date>
+    </article>
+    <article>
+        <title>Python: Readable, Powerful, and Versatile</title>
+        <content><![CDATA[
+# Python: Readable, Powerful, and Versatile
+
+Python is a high-level language with simple syntax, making it ideal for rapid development.
+
+## Hello, World!
+
+{3bracket}python
+print("Hello, World!")
+{3bracket}
+
+## Working with Lists
+
+{3bracket}python
+fruits = ["apple", "banana", "cherry"]
+for fruit in fruits:
+    print(fruit)
+{3bracket}
+
+## Virtual Environments
+
+Create and activate a virtual environment:
+
+{3bracket}sh
+python3 -m venv venv
+source venv/bin/activate
+{3bracket}
+
+> **Tip:** Use virtual environments to manage dependencies!
+
+## Further Reading
+
+- [Python Docs](https://docs.python.org/3/)
+- [Real Python Tutorials](https://realpython.com/)
+]]></content>
+        <author>Linda Chen</author>
+        <date>2025-05-27</date>
+    </article>
+    <article>
+        <title>Java: Object-Oriented Programming for the Real World</title>
+        <content><![CDATA[
+# Java: Object-Oriented Programming for the Real World
+
+Java is a versatile, cross-platform language that powers enterprise apps, web servers, and Android devices.
+
+## Hello, World!
+
+{3bracket}java
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+{3bracket}
+
+## Classes and Objects
+
+{3bracket}java
+public class Dog {
+    void bark() {
+        System.out.println("Woof!");
+    }
+
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        d.bark();
+    }
+}
+{3bracket}
+
+## Build With Maven
+
+{3bracket}sh
+mvn clean install
+{3bracket}
+
+> **Tip:** Use interfaces for abstraction and flexibility.
+
+## Resources
+
+- [Java Tutorials](https://docs.oracle.com/javase/tutorial/)
+- [Baeldung Java](https://www.baeldung.com/)
+]]></content>
+        <author>Michael Brown</author>
+        <date>2025-05-27</date>
+    </article>
+</articles>

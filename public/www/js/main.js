@@ -1,44 +1,10 @@
+import { checkLogin, logout } from "./utils/auth.js";
+import { getSuggestedArticles } from "./articles/suggested.js";
+
 window.onload = function() {
     checkLogin();
 
     getSuggestedArticles();
-}
-
-async function checkLogin() {
-    const response = await fetch("/backend/api/login");
-
-    const data = await response.json();
-
-    if (response.status === 200) {
-        document.getElementById("loginButton").style.display = "none";
-        document.getElementById("username").textContent = data.username;
-        document.getElementById("userButton").style.display = "flex";
-    } else if (response.status === 401) {
-        document.getElementById("userButton").style.display = "none";
-        document.getElementById("loginButton").style.display = "flex";
-    }
-}
-
-async function getSuggestedArticles(formData) {
-    const response = await fetch("/backend/api/articles");
-
-    const data = await response.json();
-
-    if (response.status === 200) {
-        let articlesHTML = ``;
-
-        for (const article of data.articles) {
-            articlesHTML += `
-                <div class="article">
-                    <a href="article" id="${article.id}">
-                        <h2>${article.title}</h2>
-                        <p>Explore callbacks, promises, and async/await in this beginner-friendly guide.</p>
-                    </a>
-                </div>`
-        }
-
-        document.getElementById("articlesContainer").innerHTML = articlesHTML;
-    }
 }
 
 document.getElementById("logoutBtn").addEventListener("click", function(event) {
@@ -46,18 +12,6 @@ document.getElementById("logoutBtn").addEventListener("click", function(event) {
 
     logout();
 })
-
-async function logout(formData) {
-    const response = await fetch("/backend/api/logout", {
-        "method": "POST"
-    });
-
-    const data = await response.json();
-
-    if (response.status === 200) {
-        window.location.href = data.redirect;
-    }
-}
 
 document.getElementById("articlesButton").addEventListener("click", function(event) {
     event.preventDefault();
@@ -79,9 +33,9 @@ document.addEventListener("click", function(event) {
 
 async function loadArticle(articleId) {
     const formData = new FormData();
-    formData.append("article_id", articleId);
+    formData.append("articleId", articleId);
 
-    const response = fetch("/backend/api/articles", {
+    const response = await fetch("/backend/api/articles", {
         "method": "GET",
         "body": formData
     });
@@ -89,7 +43,7 @@ async function loadArticle(articleId) {
     const data = await response.json();
 
     if (response.status === 200) {
-        
+
     }
 }
 

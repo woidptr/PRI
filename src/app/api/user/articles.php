@@ -1,15 +1,17 @@
 <?php
 
-require '../../vendor/autoload.php';
-include '../utils/database.php';
-include '../utils/methods.php';
-include '../utils/status.php';
-include_once '../models/user.php';
-include_once '../models/article.php';
+require '../../../vendor/autoload.php';
+include '../../utils/database.php';
+include '../../utils/methods.php';
+include '../../utils/status.php';
+include '../../utils/session.php';
+include_once '../../models/user.php';
+include_once '../../models/article.php';
 
 use App\Utils\Database;
 use App\Utils\HttpMethods;
 use App\Utils\HttpStatusCode;
+use App\Utils\SessionManager;
 use App\Models\User;
 use App\Models\Article;
 
@@ -85,7 +87,7 @@ if ($method === HttpMethods::GET) {
                     "id" => $article->getAuthor()->getId(),
                     "username" => $article->getAuthor()->getUsername()
                 ],
-            ];
+            ],
         ]);
 
         exit;
@@ -120,7 +122,7 @@ if ($method === HttpMethods::GET) {
                 "id" => $article->getAuthor()->getId(),
                 "username" => $article->getAuthor()->getUsername()
             ],
-        ];
+        ],
     ]);
 
     exit;

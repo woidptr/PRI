@@ -18,7 +18,7 @@ header("Content-Type: application/json");
 $method = HttpMethods::fromRequest();
 
 if ($method === HttpMethods::GET) {
-    $articleId = $_POST["articleId"] ?? "";
+    $articleId = $_GET["articleId"] ?? "";
 
     $documentManager = Database::getDocumentManager();
 

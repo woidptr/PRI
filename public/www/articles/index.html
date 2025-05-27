@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Showcase</title>
+    <link rel="stylesheet" href="../assets/css/index.css">
+    <script type="module" src="../js/articles.js"></script>
+</head>
+<body>
+    <div class="navbar">
+        <h1>Articles</h1>
+        <div id="userSection">
+            <div class="user-dropdown" id="userDropdown">
+                <button class="user-button" id="userButton" aria-expanded="false">
+                    <span class="username" id="username">-- placeholder --</span>
+                    <span class="dropdown-icon" id="dropdownIcon">▼</span>
+                </button>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <a href="/" id="articlesButton">📝 Articles</a>
+                    <a href="/" id="logoutBtn">🚪 Logout</a>
+                </div>
+            </div>
+            <a href="login.html" id="loginButton" class="login-btn">Login</a>
+        </div>
+    </div>
+
+    <div class="container" id="articlesContainer">
+    </div>
+
+    <div id="confirmModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <p>Are you sure you want to delete this article?</p>
+            <div class="modal-buttons">
+                <button id="confirmDeleteBtn" class="delete-btn">Yes, Delete</button>
+                <button id="cancelDeleteBtn" class="edit-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

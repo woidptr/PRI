@@ -8,6 +8,7 @@ class HttpStatusCode {
     public const UNAUTHORIZED = 401;
     public const NOT_FOUND = 404;
     public const METHOD_NOT_ALLOWED = 405;
+    public const CONFLICT = 409;
 }
 
 ?>

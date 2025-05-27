@@ -2,8 +2,8 @@
 
 namespace App\Utils;
 
-include '../../vendor/autoload.php';
-include '../utils/settings.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
+include __DIR__ . '/../utils/settings.php';
 
 use Doctrine\ODM\MongoDB\Configuration;
 use Doctrine\ODM\MongoDB\DocumentManager;

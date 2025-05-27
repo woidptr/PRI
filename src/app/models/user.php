@@ -4,8 +4,8 @@ namespace App\Models;
 
 // include 'article.php';
 
-include "../../vendor/autoload.php";
-include_once "../models/article.php";
+require_once __DIR__ . "/../../vendor/autoload.php";
+include_once __DIR__ . "/../models/article.php";
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations\Document;
 use Doctrine\ODM\MongoDB\Mapping\Annotations\Id;
