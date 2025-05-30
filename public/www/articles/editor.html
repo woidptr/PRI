@@ -86,6 +86,7 @@
             background-color: #666;
         }
     </style>
+    <script type="module" src="../js/editor.js"></script>
 </head>
 <body>
     <div class="navbar">
@@ -104,26 +105,5 @@
             <button class="editor-btn publish-btn" id="publishBtn">Publish Article</button>
         </div>
     </div>
-
-    <script>
-        document.getElementById('cancelBtn').addEventListener('click', () => {
-            window.location.href = "index.html"; // Go back to the main page
-        });
-
-        document.getElementById('publishBtn').addEventListener('click', () => {
-            const title = document.getElementById('articleTitle').value.trim();
-            const content = document.getElementById('articleContent').value.trim();
-
-            if (!title || !content) {
-                alert("Please fill in both title and content.");
-                return;
-            }
-
-            // Simulate publishing logic here
-            console.log("Article published:", { title, content });
-            alert("Article published successfully!");
-            window.location.href = "index.html";
-        });
-    </script>
 </body>
 </html>

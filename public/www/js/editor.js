@@ -1,0 +1,18 @@
+document.getElementById('cancelBtn').addEventListener('click', () => {
+    window.location.href = "/articles/index.html"; // Go back to the main page
+});
+
+document.getElementById('publishBtn').addEventListener('click', () => {
+    const title = document.getElementById('articleTitle').value.trim();
+    const content = document.getElementById('articleContent').value.trim();
+
+    if (!title || !content) {
+        alert("Please fill in both title and content.");
+        return;
+    }
+
+    // Simulate publishing logic here
+    console.log("Article published:", { title, content });
+    alert("Article published successfully!");
+    window.location.href = "index.html";
+});
