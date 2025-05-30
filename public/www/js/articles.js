@@ -7,6 +7,10 @@ window.onload = function() {
     getUserArticles();
 }
 
+document.getElementById("createArticleBtn").addEventListener("click", () => {
+    window.location.href = "/articles/editor.html";
+})
+
 document.addEventListener("DOMContentLoaded", () => {
     let articleToDelete = null;
 
