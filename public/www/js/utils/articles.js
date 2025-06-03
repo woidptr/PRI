@@ -1,4 +1,24 @@
 export class Articles {
+    static async loadArticles() {
+        const [xmlRes, xslRes] = await Promise.all([
+            fetch('/articles.xml'),
+            fetch('/articles.xsl')
+        ]);
+        const xmlText = await xmlRes.text();
+        const xslText = await xslRes.text();
+  
+        const parser = new DOMParser();
+        const xml = parser.parseFromString(xmlText, "application/xml");
+        const xsl = parser.parseFromString(xslText, "application/xml");
+  
+        const xsltProcessor = new XSLTProcessor();
+        xsltProcessor.importStylesheet(xsl);
+  
+        const result = xsltProcessor.transformToFragment(xml, document);
+        document.getElementById('articlesContainer').innerHTML = '';
+        document.getElementById('articlesContainer').appendChild(result);
+    }
+
     static async getSuggested(formData) {
         const response = await fetch("/backend/api/articles");
 
