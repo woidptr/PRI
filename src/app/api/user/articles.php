@@ -66,9 +66,6 @@ if ($method === HttpMethods::GET) {
 
         $user = $documentManager->getRepository(User::class)->findOneBy(["id" => $userId]);
 
-        $username = $_POST["username"];
-        $email = $_POST["email"];
-
         $title = $_POST["title"];
         $content = $_POST["content"];
 

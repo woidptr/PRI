@@ -1,15 +1,21 @@
-export async function checkLogin() {
-    const response = await fetch("/backend/api/login");
+export class Auth {
+    static async checkLogin() {
+        const response = await fetch("/backend/api/login");
 
-    const data = await response.json();
+        const data = await response.json();
 
-    if (response.status === 200) {
-        document.getElementById("loginButton").style.display = "none";
-        document.getElementById("username").textContent = data.username;
-        document.getElementById("userButton").style.display = "flex";
-    } else if (response.status === 401) {
-        document.getElementById("userButton").style.display = "none";
-        document.getElementById("loginButton").style.display = "flex";
+        if (response.status === 200) {
+            document.getElementById("loginButton").style.display = "none";
+            document.getElementById("username").textContent = data.username;
+            document.getElementById("userButton").style.display = "flex";
+
+            return true;
+        } else if (response.status === 401) {
+            document.getElementById("userButton").style.display = "none";
+            document.getElementById("loginButton").style.display = "flex";
+
+            return false;
+        }
     }
 }
 

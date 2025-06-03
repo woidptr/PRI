@@ -1,10 +1,14 @@
-import { getUserArticles } from "./articles/user.js";
-import { checkLogin } from "./utils/auth.js";
+import { Articles } from "./utils/articles.js";
+import { Auth } from "./utils/auth.js";
 
-window.onload = function() {
-    checkLogin();
+window.onload = async function() {
+    const loggedIn = await Auth.checkLogin();
 
-    getUserArticles();
+    if (loggedIn) {
+        Articles.getUserSpecific();
+    } else {
+        window.location.href = "/index.html";
+    }
 }
 
 document.getElementById("createArticleBtn").addEventListener("click", () => {

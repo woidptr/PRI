@@ -1,10 +1,10 @@
-import { checkLogin, logout } from "./utils/auth.js";
-import { getSuggestedArticles } from "./articles/suggested.js";
+import { Auth, logout } from "./utils/auth.js";
+import { Articles } from "./utils/articles.js";
 
 window.onload = function() {
-    checkLogin();
+    const loggedIn = Auth.checkLogin();
 
-    getSuggestedArticles();
+    Articles.getSuggested();
 }
 
 document.getElementById("logoutBtn").addEventListener("click", function(event) {
