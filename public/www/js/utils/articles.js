@@ -1,22 +1,25 @@
 export class Articles {
     static async loadArticles() {
-        const [xmlRes, xslRes] = await Promise.all([
-            fetch('/articles.xml'),
-            fetch('/articles.xsl')
-        ]);
-        const xmlText = await xmlRes.text();
-        const xslText = await xslRes.text();
-  
-        const parser = new DOMParser();
-        const xml = parser.parseFromString(xmlText, "application/xml");
-        const xsl = parser.parseFromString(xslText, "application/xml");
-  
-        const xsltProcessor = new XSLTProcessor();
-        xsltProcessor.importStylesheet(xsl);
-  
-        const result = xsltProcessor.transformToFragment(xml, document);
-        document.getElementById('articlesContainer').innerHTML = '';
-        document.getElementById('articlesContainer').appendChild(result);
+        fetch('/articles.xml')
+        .then(response => response.text())
+        .then(xmlText => {
+            // Parse the XML
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlText, "application/xml");
+
+            // Get all <article> elements
+            const articles = xmlDoc.getElementsByTagName('article');
+            console.log(articles);
+            // Loop through and print each <title>
+            for (let i = 0; i < articles.length; i++) {
+                const titleElement = articles[i].getElementsByTagName('title')[0];
+                const titleText = titleElement ? titleElement.textContent : '[No Title]';
+                console.log(`Article ${i + 1}: ${titleText}`);
+            }
+        })
+        .catch(error => {
+            console.error('Failed to load or parse XML:', error);
+        });
     }
 
     static async getSuggested(formData) {

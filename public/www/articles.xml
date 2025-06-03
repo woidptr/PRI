@@ -1,5 +1,5 @@
-<?xml-stylesheet type="text/xsl" href="articles.xsl"?>
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="articles.xsl"?>
 <articles>
     <article>
         <title>Getting Started with Rust: Safe and Fast Systems Programming</title>
