@@ -15,6 +15,10 @@ document.getElementById("createArticleBtn").addEventListener("click", () => {
     window.location.href = "/articles/editor.html";
 })
 
+document.getElementById("importArticleBtn").addEventListener("click", () => {
+    document.getElementById("xmlFileInput").click();
+})
+
 document.addEventListener("DOMContentLoaded", () => {
     let articleToDelete = null;
 

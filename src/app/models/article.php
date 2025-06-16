@@ -23,12 +23,16 @@ class Article {
     #[Field(type: "string")]
     private string $content;
 
+    #[Field(type: "date", name: "created_at")]
+    private \DateTime $createdAt;
+
     #[ReferenceOne(targetDocument: User::class, inversedBy: "articles")]
     private User $author;
 
     public function __construct(string $title, string $content, User $author) {
         $this->title = $title;
         $this->content = $content;
+        $this->createdAt = new \DateTime();
         $this->author = $author;
     }
 
@@ -42,6 +46,10 @@ class Article {
 
     public function getContent(): string {
         return $this->content;
+    }
+
+    public function getCreatedAt(): \DateTime {
+        return $this->createdAt;
     }
 
     public function getAuthor(): User {

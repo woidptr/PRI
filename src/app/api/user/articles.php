@@ -66,28 +66,67 @@ if ($method === HttpMethods::GET) {
 
         $user = $documentManager->getRepository(User::class)->findOneBy(["id" => $userId]);
 
-        $title = $_POST["title"];
-        $content = $_POST["content"];
+        if (isset($_FILES["xml"])) {
+            $xmlFile = $_FILES["xml"]["tmp_name"];
+            $xsdFile = __DIR__ . "/../../schemas/articles.xsd";
 
-        $article = new Article($title, $content, $user);
+            if (file_exists($xmlFile)) {
+                libxml_use_internal_errors(true);
 
-        $documentManager->persist($article);
-        $documentManager->flush();
+                $dom = new DOMDocument();
+                $dom->load($xmlFile);
 
-        http_response_code(HttpStatusCode::OK);
+                if ($dom->schemaValidate($xsdFile)) {
+                    http_response_code(HttpStatusCode::OK);
 
-        echo json_encode([
-            "article" => [
-                "title" => $article->getTitle(),
-                "description" => $article->getDescription(),
-                "author" => [
-                    "id" => $article->getAuthor()->getId(),
-                    "username" => $article->getAuthor()->getUsername()
+                    echo json_encode([
+                        "status_code" => HttpStatusCode::OK,
+                        "message" => "Created"
+                    ]);
+
+                    exit;
+                } else {
+                    $errors = libxml_get_errors();
+                    $messages = [];
+                    foreach ($errors as $error) {
+                        $messages[] = trim($error->message) . " (line {$error->line})";
+                    }
+                    libxml_clear_errors();
+
+                    http_response_code(HttpStatusCode::UNPROCESSABLE_ENTITY);
+
+                    echo json_encode([
+                        "status_code" => HttpStatusCode::UNPROCESSABLE_ENTITY,
+                        "message" => "XML validation error"
+                    ]);
+
+                    exit;
+                }
+            }
+        } else {
+            $title = $_POST["title"];
+            $content = $_POST["content"];
+
+            $article = new Article($title, $content, $user);
+
+            $documentManager->persist($article);
+            $documentManager->flush();
+
+            http_response_code(HttpStatusCode::OK);
+
+            echo json_encode([
+                "article" => [
+                    "title" => $article->getTitle(),
+                    "description" => $article->getDescription(),
+                    "author" => [
+                        "id" => $article->getAuthor()->getId(),
+                        "username" => $article->getAuthor()->getUsername()
+                    ],
                 ],
-            ],
-        ]);
+            ]);
 
-        exit;
+            exit;
+        }
     } else {
         http_response_code(HttpStatusCode::UNAUTHORIZED);
 

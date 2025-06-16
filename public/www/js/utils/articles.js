@@ -88,6 +88,20 @@ export class Articles {
         }
     }
 
+    static async publishFromXML(file) {
+        let formData = new FormData();
+        formData.append("xmlFile", file);
+
+        const response = await fetch("/backend/api/user/articles", {
+            "method": "POST",
+            "body": formData
+        })
+
+        if (response.status === 200) {
+            window.location.href = "index.html";
+        }
+    }
+
     static async delete() {
         let formData = new FormData();
 
