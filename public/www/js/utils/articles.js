@@ -23,18 +23,12 @@ export class Articles {
     }
 
     static async loadArticleById(articleId) {
-        const formData = new FormData();
-        formData.append("articleId", articleId);
-
-        const response = await fetch("/backend/api/articles", {
-            "method": "GET",
-            "body": formData
-        });
+        const response = await fetch(`/backend/api/articles?articleId=${articleId}`);
 
         const data = await response.json();
 
         if (response.status === 200) {
-            return data;
+            return data.articles;
         }
     }
 
@@ -49,7 +43,7 @@ export class Articles {
             for (const article of data.articles) {
                 articlesHTML += `
                     <div class="article">
-                        <a href="article" data-id="${article.id}">
+                        <a href="/articles/view?id=${article.id}" data-id="${article.id}">
                             <h2>${article.title}</h2>
                         </a>
                     </div>`

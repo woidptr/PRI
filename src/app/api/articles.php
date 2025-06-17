@@ -51,7 +51,7 @@ if ($method === HttpMethods::GET) {
         $article = $documentManager->getRepository(Article::class)->findOneBy(["id" => $articleId]);
 
         echo json_encode([
-            "article" => [
+            "articles" => [
                 "id" => $article->getId(),
                 "title" => $article->getTitle(),
                 "content" => $article->getContent(),

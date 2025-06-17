@@ -1,5 +1,15 @@
 import { Articles } from "./utils/articles.js";
 
+window.onload = function() {
+    const params = new URLSearchParams(window.location.search);
+
+    const articleId = params.get("id");
+
+    if (articleId !== null) {
+        console.log(articleId);
+    }
+}
+
 document.getElementById('cancelBtn').addEventListener('click', () => {
     window.location.href = "/articles/index.html"; // Go back to the main page
 });

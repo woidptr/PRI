@@ -4,7 +4,7 @@ import { Articles } from "./utils/articles.js";
 window.onload = function() {
     const loggedIn = Auth.checkLogin();
 
-    Articles.loadArticles();
+    // Articles.loadArticles();
 
     Articles.getSuggested();
 }

@@ -12,6 +12,17 @@ body {
     height: 100vh;
 }
 
+.unselectable {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.no-dragging {
+    -webkit-user-drag: none;
+}
+
 .error-container {
     max-width: 600px;
 }

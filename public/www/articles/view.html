@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Article</title>
     <link rel="stylesheet" href="../assets/css/index.css">
-    <script type="module" src="../js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="module" src="../js/view.js"></script>
 </head>
 <body>
     <div class="navbar">
@@ -22,7 +23,7 @@
                     <a href="/" id="logoutBtn">🚪 Logout</a>
                 </div>
             </div>
-            <a href="login.html" id="loginButton" class="login-btn">Login</a>
+            <a href="/login.html" id="loginButton" class="login-btn">Login</a>
         </div>
     </div>
 
@@ -30,7 +31,7 @@
         <article class="article" style="box-shadow: 0 0 20px rgba(255,255,255,0.09); margin: 40px 0;">
             <header>
                 <h2 id="articleTitle" style="font-size:2em; margin-bottom: 10px;">-- placeholder --</h2>
-                <div style="font-size: 1em; color: #bbb; margin-bottom: 20px;">By <span style="font-weight:bold;">Jane Doe</span> &bull; May 2025</div>
+                <div style="font-size: 1em; color: #bbb; margin-bottom: 20px;">By <span id="articleAuthor" style="font-weight:bold;">-- placeholder --</span> &bull; May 2025</div>
             </header>
             <section id="articleContent" style="text-align:left;">
                 -- placeholder --
