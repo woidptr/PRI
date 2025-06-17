@@ -1,4 +1,4 @@
-# PHP = brain rot
+# Article website
 
 An article website that uses vanilla php for the backend (this was a requirement), vanilla html/ccs/js in the frontend (also requirement) and mongodb as a database. Created for a subject in university to pass the exam.
 
