@@ -19,6 +19,22 @@ document.getElementById("importArticleBtn").addEventListener("click", () => {
     document.getElementById("xmlFileInput").click();
 })
 
+document.getElementById("xmlFileInput").addEventListener("change", (event) => {
+    event.preventDefault();
+
+    const file = event.target.files[0];
+
+    Articles.publishFromXML(file);
+})
+
+document.addEventListener("click", (event) => {
+    if (event.target.classList.contains("delete-btn")) {
+        const articleId = event.target.dataset.id;
+
+        Articles.delete(articleId);
+    }
+})
+
 document.addEventListener("DOMContentLoaded", () => {
     let articleToDelete = null;
 

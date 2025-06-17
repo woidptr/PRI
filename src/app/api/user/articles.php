@@ -66,8 +66,8 @@ if ($method === HttpMethods::GET) {
 
         $user = $documentManager->getRepository(User::class)->findOneBy(["id" => $userId]);
 
-        if (isset($_FILES["xml"])) {
-            $xmlFile = $_FILES["xml"]["tmp_name"];
+        if (isset($_FILES["xmlFile"])) {
+            $xmlFile = $_FILES["xmlFile"]["tmp_name"];
             $xsdFile = __DIR__ . "/../../schemas/articles.xsd";
 
             if (file_exists($xmlFile)) {
@@ -142,6 +142,8 @@ if ($method === HttpMethods::GET) {
 
     $rawData = file_get_contents("php://input");
     $data = json_decode($rawData, true);
+
+    $articleId = $data["id"];
 
     $article = $documentManager->getRepository(Article::class)->findOneBy(["id" => $articleId]);
 

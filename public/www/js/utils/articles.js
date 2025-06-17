@@ -1,4 +1,6 @@
 export class Articles {
+
+
     static async loadArticles() {
         fetch('/articles.xml')
         .then(response => response.text())
@@ -95,21 +97,28 @@ export class Articles {
         const response = await fetch("/backend/api/user/articles", {
             "method": "POST",
             "body": formData
-        })
+        });
 
         if (response.status === 200) {
-            window.location.href = "index.html";
+            // window.location.href = "index.html";
         }
     }
 
-    static async delete() {
+    static async delete(articleId) {
         let formData = new FormData();
 
-        formData.append("id", 123456789);
+        formData.append("id", articleId);
 
         const response = await fetch("/backend/api/user/articles", {
             "method": "DELETE",
-            "body": formData
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "body": JSON.stringify({"id": articleId})
         });
+
+        if (response.status === 200) {
+            window.location.href = "/articles/index.html";
+        }
     }
 }
