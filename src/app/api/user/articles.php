@@ -83,7 +83,13 @@ if ($method === HttpMethods::GET) {
                     foreach($articleNodes as $article) {
                         $title = $xpath->query("title", $article)->item(0)->nodeValue;
                         $content = $xpath->query("content", $article)->item(0)->nodeValue;
+
+                        $article = new Article($title, $content, $user);
+
+                        $documentManager->persist($article);
                     }
+
+                    $documentManager->flush();
 
                     http_response_code(HttpStatusCode::OK);
 
