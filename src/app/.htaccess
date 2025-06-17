@@ -13,7 +13,7 @@ RewriteCond %{REQUEST_URI} (\.env|\.htaccess|\.git|\.log)$ [NC]
 RewriteRule ^ - [R=404,L]
 
 # Pretend /models does not exist
-RewriteCond %{REQUEST_URI} ^/(models|utils)(/|$) [NC]
+RewriteCond %{REQUEST_URI} ^/(models|utils|schemas)(/|$) [NC]
 RewriteRule ^ - [R=404,L]
 
 ErrorDocument 404 /errors/404.php
