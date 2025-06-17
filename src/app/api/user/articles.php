@@ -77,6 +77,14 @@ if ($method === HttpMethods::GET) {
                 $dom->load($xmlFile);
 
                 if ($dom->schemaValidate($xsdFile)) {
+                    $xpath = new DOMXPath($dom);
+                    $articleNodes = $xpath->query("//article");
+
+                    foreach($articleNodes as $article) {
+                        $title = $xpath->query("title", $article)->item(0)->nodeValue;
+                        $content = $xpath->query("content", $article)->item(0)->nodeValue;
+                    }
+
                     http_response_code(HttpStatusCode::OK);
 
                     echo json_encode([
