@@ -29,22 +29,10 @@ document.addEventListener("click", function(event) {
     if (article != null && article.getAttribute("href") === "article") {
         event.preventDefault();
 
+        const articleId = article.dataset.id;
 
+        console.log(articleId);
+
+        Articles.loadArticleById(articleId);
     }
 })
-
-async function loadArticle(articleId) {
-    const formData = new FormData();
-    formData.append("articleId", articleId);
-
-    const response = await fetch("/backend/api/articles", {
-        "method": "GET",
-        "body": formData
-    });
-
-    const data = await response.json();
-
-    if (response.status === 200) {
-
-    }
-}

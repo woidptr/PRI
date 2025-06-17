@@ -1,6 +1,4 @@
 export class Articles {
-
-
     static async loadArticles() {
         fetch('/articles.xml')
         .then(response => response.text())
@@ -24,6 +22,22 @@ export class Articles {
         });
     }
 
+    static async loadArticleById(articleId) {
+        const formData = new FormData();
+        formData.append("articleId", articleId);
+
+        const response = await fetch("/backend/api/articles", {
+            "method": "GET",
+            "body": formData
+        });
+
+        const data = await response.json();
+
+        if (response.status === 200) {
+            return data;
+        }
+    }
+
     static async getSuggested(formData) {
         const response = await fetch("/backend/api/articles");
 
@@ -35,9 +49,8 @@ export class Articles {
             for (const article of data.articles) {
                 articlesHTML += `
                     <div class="article">
-                        <a href="article" id="${article.id}">
+                        <a href="article" data-id="${article.id}">
                             <h2>${article.title}</h2>
-                            <p>Explore callbacks, promises, and async/await in this beginner-friendly guide.</p>
                         </a>
                     </div>`
             }
@@ -57,9 +70,8 @@ export class Articles {
             for (const article of data.articles) {
                 articlesHTML += `
                     <div class="article">
-                        <a href="article" id="${article.id}">
+                        <a href="article" data-id="${article.id}">
                             <h2>${article.title}</h2>
-                            <p>Explore callbacks, promises, and async/await in this beginner-friendly guide.</p>
                         </a>
                     </div>
                     <div class="article-actions">
