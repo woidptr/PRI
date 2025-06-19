@@ -4,8 +4,6 @@ import { Articles } from "./utils/articles.js";
 window.onload = function() {
     const loggedIn = Auth.checkLogin();
 
-    // Articles.loadArticles();
-
     Articles.getSuggested();
 }
 
@@ -14,15 +12,6 @@ document.getElementById("logoutBtn").addEventListener("click", function(event) {
 
     logout();
 })
-
-// document.getElementById("articlesButton").addEventListener("click", function(event) {
-//     event.preventDefault();
-
-//     const form = event.target;
-//     const formData = new FormData(form);
-
-//     // getSuggestedArticles(formData);
-// })
 
 document.addEventListener("click", function(event) {
     let article = event.target.closest("A");

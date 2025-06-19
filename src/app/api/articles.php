@@ -35,6 +35,7 @@ if ($method === HttpMethods::GET) {
                 "id" => $article->getId(),
                 "title" => $article->getTitle(),
                 "content" => $article->getContent(),
+                "createdAt" => $article->getCreatedAt(),
                 "author" => [
                     "id" => $article->getAuthor()->getId(),
                     "username" => $article->getAuthor()->getUsername()
@@ -55,6 +56,7 @@ if ($method === HttpMethods::GET) {
                 "id" => $article->getId(),
                 "title" => $article->getTitle(),
                 "content" => $article->getContent(),
+                "createdAt" => $article->getCreatedAt(),
                 "author" => [
                     "id" => $article->getAuthor()->getId(),
                     "username" => $article->getAuthor()->getUsername()

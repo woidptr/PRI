@@ -36,5 +36,17 @@ document.addEventListener("click", (event) => {
         const articleId = event.target.dataset.id;
 
         window.location.href = `/articles/editor.html?id=${articleId}`;
+    } else {
+        let article = event.target.closest("A");
+
+        if (article != null && article.getAttribute("href") === "article") {
+            event.preventDefault();
+
+            const articleId = article.dataset.id;
+
+            console.log(articleId);
+
+            // Articles.loadArticleById(articleId);
+        }
     }
 })
